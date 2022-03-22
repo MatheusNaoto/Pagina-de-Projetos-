@@ -1,16 +1,11 @@
-/*function validar() {
-    var bin = document.getElementById('bin')
-    Number.parseInt("bin")
-    if (bin == 1){
-        window.alert(" Boa ")
-    }else if(bin == 0 ){
-        window.alert(" Boa ")
-    }else{
-        window.alert("só 1 e 0")
-        bin.innerText(" ")
+function validar() {
+    var bin = window.document.getElementById('bin')
+    let str_bin = String(bin.value)
+    let result = str_bin.match(/[2-9]/g) 
+    if (result != null){
+        window.alert('Isso não é um número binário')
     }
-}*/
-
+}
 
 function converter(){
     /*
@@ -22,7 +17,7 @@ function converter(){
     */
     var bin = window.document.getElementById('bin') 
     var dec = window.document.getElementById('dec')
-    var str_bin = String(bin.value) //string
+    var str_bin = String(bin.value)//String
     var l_bin = str_bin.length //number
     var i_bin = l_bin - 1 //number 
     let res = 0 
@@ -37,5 +32,3 @@ function converter(){
 
 // Proximo passo: fazer a limpeza dpara colocar outro número
 // Conferir se o número em binário possui apenas 1 e 0
-
-
