@@ -1,11 +1,15 @@
-function validar() {
+function validar() { //testar o onKeydown
     var bin = window.document.getElementById('bin')
     let str_bin = String(bin.value)
-    let result = str_bin.match(/[2-9]/g) 
-    if (result != null){
-        window.alert('Isso não é um número binário')
+    let result = str_bin.match(/[2-9]/g)
+    document.getElementById("botao").disabled = false
+        if (result != null){
+            window.alert('Isso não é um número binário')
+            document.getElementById("botao").disabled = true
     }
 }
+
+// Fazer não converter depois de descobrir que não é binario
 
 function converter(){
     /*
@@ -31,4 +35,4 @@ function converter(){
 
 
 // Proximo passo: fazer a limpeza dpara colocar outro número
-// Conferir se o número em binário possui apenas 1 e 0
+// Conferir se o número em binário possui apenas 1 e 0 - (1/2 0k)
