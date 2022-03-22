@@ -20,9 +20,9 @@ function converter(){
 
         Por exemplo --> 101 = (da direita para esquerda) = 1*(2^0) + 0*(2^1) + 1*(2^2) = 5
     */
-    var bin = window.document.getElementById('bin') //aqui ta o problema, não estamos conseguindo pegar o bin
+    var bin = window.document.getElementById('bin') 
     var dec = window.document.getElementById('dec')
-    var str_bin = String(bin.value)
+    var str_bin = String(bin.value) //string
     var l_bin = str_bin.length //number
     var i_bin = l_bin - 1 //number 
     let res = 0 
