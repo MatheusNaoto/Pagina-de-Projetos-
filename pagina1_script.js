@@ -4,9 +4,11 @@ function validar() { //testar o onKeydown
     let result = str_bin.match(/[2-9]/g)
     document.getElementById("botao").disabled = false
         if (result != null){
-            window.alert('Isso não é um número binário')
             document.getElementById("botao").disabled = true
-    }
+            
+        }else{
+            document.getElementById("botao").disabled = false
+        }
 }
 
 // Fazer não converter depois de descobrir que não é binario
