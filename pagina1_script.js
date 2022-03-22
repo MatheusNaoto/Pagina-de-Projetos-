@@ -11,6 +11,7 @@
     }
 }*/
 
+
 function converter(){
     /*
         Tranformar um número binário em número decimal:
@@ -21,21 +22,20 @@ function converter(){
     */
     var bin = window.document.getElementById('bin') //aqui ta o problema, não estamos conseguindo pegar o bin
     var dec = window.document.getElementById('dec')
-    var n_bin = Number(bin.value) //Passagem de object para number
-    var nn_bin = String(n_bin) //nn_bin é string
-    var l_bin = nn_bin.length //number
+    var str_bin = String(bin.value)
+    var l_bin = str_bin.length //number
     var i_bin = l_bin - 1 //number 
     let res = 0 
-    var x = typeof res
+    var x = typeof z
     for (let i = 0; i <= i_bin; i++) {
-        res += (2**i)*nn_bin[i_bin-i] // nn_ é string / bin é object 
+        res += (2**i)*str_bin[i_bin-i] // nn_ é string / bin é object 
 
       }
     dec.innerHTML = `Seu número em <strong>decimal</strong> é: ${res}`
 }
 
+
 // Proximo passo: fazer a limpeza dpara colocar outro número
 // Conferir se o número em binário possui apenas 1 e 0
-
 
 
