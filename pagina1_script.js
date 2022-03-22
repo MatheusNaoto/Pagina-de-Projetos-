@@ -9,6 +9,7 @@ function validar() { //testar o onKeydown
             dec.innerHTML = `Seu número <strong>não é binário</strong>`
         }else{
             document.getElementById("botao").disabled = false
+            dec.innerHTML = ``
         }
 }
 
