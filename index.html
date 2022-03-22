@@ -5,18 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina 1</title>
-    <style>
-        #dec{
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="pagina1.css">
 </head>
 <body>
-    <h1>Tranformação de Binário para Decimal:</h1>
-    <h3>Número em binário que você deseja converter: </h3>
-    <input type="number" name="binario" id="bin" onkeyup="validar()"> <!-- Evento onchange para desfazer tem que ter um clique na tela-->
-    <input type="button" value="Converter" id="botao" onclick="converter()" >
-    <div id="dec">
+    <button id="b2d" onclick="b2d()">Binario p/ Decimal</button><button id="d2b" onclick="d2b()">Decimal p/ Binário</button>
+    <div class="First2">
+        <div id="container1">
+            <h1 id="titulo1">Tranformação de Binário para Decimal:</h1>
+            <h3 id="subt1">Número em binário que você deseja converter: </h3>
+            <div>
+                <input type="number" class="inputtxt" id="bin"> <!-- Evento onchange para desfazer tem que ter um clique na tela-->
+                <input type="button" value="Converter" id="botao"> 
+                <div id="dec"></div>
+            </div>
+        </div>
+
+        <div id="container2">
+            <h1>Aqui eu vou fazer uma calculadora ou um Cronometro:</h1>
+            <h3>Mas primeiro tenho que terminar o da esquerda/cima: </h3>
+        
+        </div>
+    </div>
 
     <script src="pagina1_script.js"></script>
 </body>
