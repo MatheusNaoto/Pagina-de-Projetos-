@@ -1,7 +1,7 @@
-document.getElementById('bin').addEventListener('onkeyup', validar)
+document.getElementById("bin").addEventListener('keyup', validar, true)
 document.getElementById('botao').addEventListener('click', converter)
 
-function validar() { //testar o onKeydown
+function validar() {
     var bin = window.document.getElementById('bin')
     var dec = window.document.getElementById('dec')
     let str_bin = String(bin.value)
@@ -19,7 +19,7 @@ function validard2b(){
     document.getElementById("botao").disabled = false
 }
 
-// Fazer não converter depois de descobrir que não é binario (2/2 ok - impede a conversão desabilitando o botao)
+
 // Aprimoramento: tempo de disable ainda dá para clicar antes do botão ficar disabilitado
 // Aprimoramento 2: não somente disabilitar o botao mas impedir a função converter
 // Ler o numero de tempo em tempo 1ms
@@ -62,13 +62,12 @@ function converterd2b(){
 }
 
 
-// Proximo passo: fazer a limpeza dpara colocar outro número (2/2 ok)
-// Conferir se o número em binário possui apenas 1 e 0 - (2/2 ok)
+
 function d2b(){
-    document.getElementById('bin').removeEventListener('onkeyup', validar)
+    document.getElementById('bin').removeEventListener('keyup', validar)
     document.getElementById('botao').removeEventListener('click', converter)
     document.getElementById('bin').id = 'decim'
-    document.getElementById('decim').addEventListener('onkeyup', validard2b)
+    document.getElementById('decim').addEventListener('keyup', validard2b)
     document.getElementById('botao').addEventListener('click', converterd2b)
     document.getElementById('dec').innerText = ""
     document.getElementById('titulo1').innerText = "Tranformação de Decimal para Binário:"
@@ -82,7 +81,7 @@ function b2d(){
     document.getElementById('decim').removeEventListener('onkeyup', validard2b)
     document.getElementById('botao').removeEventListener('click', converterd2b)
     document.getElementById('decim').id = 'bin'
-    document.getElementById('bin').addEventListener('onkeyup', validar)
+    document.getElementById('bin').addEventListener('keyup', validar)
     document.getElementById('botao').addEventListener('click', converter)
     document.getElementById('dec').innerText = ""
     var title = window.document.getElementById('titulo1')
@@ -94,5 +93,3 @@ function b2d(){
 
 }
 //resolver bug: clicar em b2d button antes 'sobrecarrega'
-// resolver a troca de eventos, para conseguir transformar o contrario
-// o id ja esta sendo trocado
