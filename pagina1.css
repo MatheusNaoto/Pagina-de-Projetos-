@@ -1,0 +1,25 @@
+.First2{
+    height: auto;
+    width: auto;
+}
+#container1{
+    height: 50%;
+    float: left;
+    display: inline;
+}
+#container2{
+    height: 50%;
+    margin-right: 10px;
+    float: right;
+    display: inline;
+  
+}
+#dec{
+    margin-top: 10px;
+}
+#b2d{
+    margin-right: 5px;
+}
+#d2b{
+    margin-left: 5px;
+}
