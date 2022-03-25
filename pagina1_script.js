@@ -58,7 +58,7 @@ function converterd2b(){
         Num = Math.floor(Num/2)
         result = Resto_string.concat(result)   
   }
-    dec.innerHTML = `Seu número em binario é ${result}`
+    dec.innerHTML = `Seu número em <strong>binário</strong> é ${result}`
 }
 
 
@@ -93,3 +93,123 @@ function b2d(){
 
 }
 //resolver bug: clicar em b2d button antes 'sobrecarrega'
+// Calculadora:
+
+class Calculadora {
+  constructor(visor_anteriorTextElement, visor_atualTextElement){
+  this.visor_anteriorTextElement = visor_anteriorTextElement
+  this.visor_atualTextElement =  visor_atualTextElement
+  this.limpar()
+  }
+
+  //definir as funções que serão chamadas
+
+  limpar(){
+    this.visor_anterior = ''
+    this.visor_atual = ''
+    this.operacao = undefined
+  }
+
+  adicionar_numero(numero){
+    if (numero === ',' && this.visor_atual.includes(','))return
+    if (numero === '+/-' && ('-').includes(this.visor_atual)) //adicionado para tentar mudar o sinal
+    if (numero === '()' && ('(').includes(this.visor_atual).includes(')'))
+    this.visor_atual = this.visor_atual.toString() + numero.toString()
+  }
+  adicionar_operador(operacao){
+    if (this.visor_atual === '') return
+    if (this.visor_anterior !== ''){
+      this.computar()
+    }
+    this.operacao = operacao
+    this.visor_anterior =  this.visor_atual
+    this.visor_atual = ''
+  }
+  computar(){
+    let fazer_computacao 
+    const anterior = parseFloat (this.visor_anterior)
+    const atual = parseFloat (this.visor_atual)
+    if (isNaN(prev) || isNaN(atual)) return
+    switch (this.operacao){
+      case '+':
+        fazer_computacao = anterior + atual 
+        break
+      case '-':
+        fazer_computacao = anterior - atual
+        break
+      case '&times':
+        fazer_computacao = anterior * atual
+        break        
+      case '&divide':
+        fazer_computacao = anterior / atual
+        break
+      case '%':
+        fazer_computacao = atual/100
+        break
+      default:
+        return 
+    }
+    this.visor_atual = fazer_computacao
+    this.operacao = undefined
+    this.visor_anterior = ''
+  }
+
+  pegar_numero_visor(numero){
+    const string_numero = numero.toString()
+    const digito_inteiro = parseFloat(string_numero.split(',')[0])
+    const digito_decimal = string_numero.split(',')[1]
+    let display_inteiro
+    if (isNaN(digito_inteiro)) {
+      display_inteiro = ''
+    } else {
+      display_inteiro = digito_inteiro.toLocaleString('en', {maximumFractionDigits: 0})//entender esse 'en'
+    }
+    if (digito_decimal != null){
+      return `${display_inteiro}.${digito_decimal}`
+    } else {
+      return display_inteiro
+    }
+  }
+  atualizar_display(){
+    this.visor_atualTextElement.innerText = this.pegar_numero_visor(this.visor_atual)
+    if (this.operacao != null){
+      this.visor_anteriorTextElement.innerText = `${this.pegar_numero_visor(this.visor_anterior)} ${this.operacao}`
+    }else{
+      this.visor_anteriorTextElement.innerText = ''
+    }
+  }
+}
+
+const botao_numero = document.querySelectorAll ('[data-numero]')
+const botao_operacao = document.querySelectorAll ('[data-operacao]')
+const botao_igual = document.querySelector ('[data-igual]')
+const botao_limpar = document.querySelector ('[data-limpar]')
+const visor_anteriorTextElement = document.querySelector ('[data-visor_anterior]')
+const visor_atualTextElement = document.querySelector ('[data-visor_atual]')
+
+const calculadora = new Calculadora (visor_anteriorTextElement, visor_atualTextElement)
+
+botao_numero.forEach(button =>{
+  button.addEventListener('click', () => {
+    calculadora.adicionar_numero(button.innerText)
+    calculadora.atualizar_display()
+  })
+})
+
+botao_operacao.forEach(button =>{ //for each é usado porque tem mais de um botao de operação e numero
+  button.addEventListener('click', () =>{
+    calculadora.adicionar_operador(button.innerText)
+    calculadora.atualizar_display()
+  })
+})
+
+botao_igual.addEventListener ('click', ()=>{
+  calculadora.computar()
+  calculadora.atualizar_display()
+})
+
+botao_limpar.addEventListener('click', () =>{
+  calculadora.limpar()
+  calculadora.atualizar_display()
+})
+
