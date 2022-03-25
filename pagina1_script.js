@@ -111,9 +111,9 @@ class Calculadora {
   }
 
   adicionar_numero(numero){
-    if (numero === ',' && this.visor_atual.includes(','))return
-    if (numero === '+/-' && ('-').includes(this.visor_atual)) //adicionado para tentar mudar o sinal
-    if (numero === '()' && ('(').includes(this.visor_atual).includes(')'))
+    if (numero === '.' && this.visor_atual.includes('.'))return
+    //if (numero === '+/-' && ('-').includes(this.visor_atual)) //adicionado para tentar mudar o sinal
+    //if (operacao === '()' && ('(').includes(this.visor_atual).includes(')'))
     this.visor_atual = this.visor_atual.toString() + numero.toString()
   }
   adicionar_operador(operacao){
@@ -127,9 +127,9 @@ class Calculadora {
   }
   computar(){
     let fazer_computacao 
-    const anterior = parseFloat (this.visor_anterior)
-    const atual = parseFloat (this.visor_atual)
-    if (isNaN(prev) || isNaN(atual)) return
+    const anterior = parseFloat(this.visor_anterior)
+    const atual = parseFloat(this.visor_atual)
+    if (isNaN(anterior) || isNaN(atual)) return
     switch (this.operacao){
       case '+':
         fazer_computacao = anterior + atual 
@@ -137,14 +137,14 @@ class Calculadora {
       case '-':
         fazer_computacao = anterior - atual
         break
-      case '&times':
+      case '*':
         fazer_computacao = anterior * atual
         break        
-      case '&divide':
+      case '/':
         fazer_computacao = anterior / atual
         break
       case '%':
-        fazer_computacao = atual/100
+        fazer_computacao = anterior/100 //problema
         break
       default:
         return 
@@ -152,12 +152,12 @@ class Calculadora {
     this.visor_atual = fazer_computacao
     this.operacao = undefined
     this.visor_anterior = ''
-  }
+  } 
 
   pegar_numero_visor(numero){
     const string_numero = numero.toString()
-    const digito_inteiro = parseFloat(string_numero.split(',')[0])
-    const digito_decimal = string_numero.split(',')[1]
+    const digito_inteiro = parseFloat(string_numero.split('.')[0])
+    const digito_decimal = string_numero.split('.')[1]
     let display_inteiro
     if (isNaN(digito_inteiro)) {
       display_inteiro = ''
@@ -171,9 +171,11 @@ class Calculadora {
     }
   }
   atualizar_display(){
-    this.visor_atualTextElement.innerText = this.pegar_numero_visor(this.visor_atual)
+    this.visor_atualTextElement.innerText = 
+      this.pegar_numero_visor(this.visor_atual)
     if (this.operacao != null){
-      this.visor_anteriorTextElement.innerText = `${this.pegar_numero_visor(this.visor_anterior)} ${this.operacao}`
+      this.visor_anteriorTextElement.innerText =
+       `${this.pegar_numero_visor(this.visor_anterior)} ${this.operacao}`
     }else{
       this.visor_anteriorTextElement.innerText = ''
     }
@@ -213,3 +215,6 @@ botao_limpar.addEventListener('click', () =>{
   calculadora.atualizar_display()
 })
 
+// Limitar o número de dígitos 
+// Colocar , em vez de .
+// +/- , () e  %
