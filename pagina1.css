@@ -30,9 +30,8 @@
     margin: 0 auto;
     width: 10em;
 }
-#calculadora h1 {
-    font-weight: 300;
-    margin: 0;
+#container2 h1 {
+    text-align: center;
   }
 #calculadora button{
     margin: 0.25em;
